@@ -4,10 +4,16 @@ const app = express();
 
 app.use(express.json());
 
-const token = 'EACKzzZBdlJMkBOzrV5TuvxirAZCpn8i4j6hcn830HLu20HBSvn55p7uHT89ZAMxmQXldZBHQaWrhPl0TcTkZASFTxmuZByRfeRY1xBbliPoh7jMZB00uZBDB8ZANxSuW2wn3nAVvvChqXOZAw9DsECtIVIqZC2bEj95Ky2ZCcl9rFlGss2Y8qaO67CqJfnZCwdoC4LOVvch74ZCwjGSW4OFuIuWPtFoy5wnhZBP4VLlNeKu';
+const token = 'TU_TOKEN';
 const phoneID = '711275242058884';
 const apiURL = `https://graph.facebook.com/v17.0/${phoneID}/messages`;
 
+// Ruta de prueba para Render
+app.get('/', (req, res) => {
+  res.send('AgendaKIA API activa ✨ Usa POST en /enviar-mensaje');
+});
+
+// Ruta principal para enviar mensajes
 app.post('/enviar-mensaje', async (req, res) => {
   const { numeroDestino, mensaje } = req.body;
 
@@ -30,7 +36,9 @@ app.post('/enviar-mensaje', async (req, res) => {
   }
 });
 
+// Puerto dinámico
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor AgendaKIA activo en el puerto ${PORT}`);
 });
+
