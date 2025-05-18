@@ -2,13 +2,16 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 
+// Middlewares necesarios para leer JSON y formularios
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Variables de configuración
 const token = 'TU_TOKEN';
 const phoneID = '711275242058884';
 const apiURL = `https://graph.facebook.com/v17.0/${phoneID}/messages`;
 
-// Ruta de prueba para Render
+// Ruta de prueba para verificar que la API responde
 app.get('/', (req, res) => {
   res.send('AgendaKIA API activa ✨ Usa POST en /enviar-mensaje');
 });
@@ -22,21 +25,21 @@ app.post('/enviar-mensaje', async (req, res) => {
       messaging_product: 'whatsapp',
       to: numeroDestino,
       type: 'text',
-      text: { body: mensaje }
+      text: { body: mensaje },
     }, {
       headers: {
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     res.status(200).json({ success: true, data: response.data });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.response.data });
+    res.status(500).json({ success: false, error: err.response?.data || err.message });
   }
 });
 
-// Puerto dinámico
+// Puerto dinámico para Render
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor AgendaKIA activo en el puerto ${PORT}`);
