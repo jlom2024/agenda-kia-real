@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Variables de configuración
-const token = 'TU_TOKEN';
+const token = 'EACKzzZBdlJMkBOyZCVvSU2fFepTX5r0ZBayZAg1j4bLg0XVrY5y3y3WjQ6uzpZAkZC1Mse5SZCQUVPHYEKM49YFjNrJGjOmzgKKmsY7WnpnoKAWEkNSR8Bj9p99fUaM3gduqBSUehKeZBOcYioNlKBKxYsXFRcQ9QxVoPVaWbHothV2gSc64iCAOjXzNjYHHws4A0QbIsz5qKof75mCU56Xs4Ab3ap4gVRWPDL7n';
 const phoneID = '711275242058884';
 const apiURL = `https://graph.facebook.com/v17.0/${phoneID}/messages`;
 
